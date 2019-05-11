@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React-ToDo-App</title>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.js"></script>
+    <script src="../../js/browser.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <script type="text/babel">
+
+        // Comment Component...
+        var Comment = React.createClass({
+
+            // Drawing the Component... 
+            render: function () {
+                return (
+                    <div className="commentContainer">
+                        <div className="commentText">{this.props.children}</div>
+                        <button onClick={this.edit} className="button-primary">Edit</button>
+                        <button onClick={this.remove} className="button-danger">Remove</button>
+                    </div>
+                );
+            }, // Adding Custom Funtions To Our Component...
+            edit: function (){
+                alert("Editing Comment");
+            },
+            remove: function (){
+                alert("Removing Comment");
+            }
+
+        });
+
+
+        ReactDOM.render(
+            <div className="board">
+                <Comment>Hey My Name is Ashish</Comment>
+                <Comment>FootBall</Comment>
+                <Comment>Tennis</Comment>
+            </div>, document.getElementById('container'));
+    
+    
+    </script>
+
+</body>
+</html>
