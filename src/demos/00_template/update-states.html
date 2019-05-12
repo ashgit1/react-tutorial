@@ -26,11 +26,10 @@
             },
             remove: function (){
                console.log('Removing Comment');
-                
+               this.props.deleteFromBoard(this.props.index);
             }, 
             save: function (){
-                var val = this.refs.newComment.value;
-                console.log('New Comment: ' + val);
+                this.props.updateCommentText(this.refs.newComment.value, this.props.index);
                 this.setState({editing: false});
             },
             renderNormal: function (){
@@ -83,9 +82,9 @@
             },
 
             updateComment: function(newText, index){
-                console.log("Updating Comment: " + newComment);
+                console.log("Updating Comment: " + newText);
                 var arr = this.state.comments;
-                arr[index] = newComment;
+                arr[index] = newText;
                 this.setState({
                     comments: arr
                 });
@@ -93,7 +92,8 @@
 
             eachComment: function(text, index){
                 return (
-                    <Comment key={index} index={index}>
+                    <Comment key={index} index={index} updateCommentText={this.updateComment} 
+                                                            deleteFromBoard={this.removeComment} >
                         {text}
                     </Comment>
                     );
